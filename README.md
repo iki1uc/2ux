@@ -1,24 +1,11 @@
-# 2UX — RAW Bench Material
+## Position (System-Hinweis)
 
-2UX ist ein neutraler Bench-Respo.  
-Er enthält Stationen, Items und Operator-Material für einfache RAW-Tests.
+- home_pos: 0–80 (81-Raum)
+- target_pos: 0–80
+- movement_id: diff(home → target) im 81-Raum
+- band: 4-Raum (0–3)
+- cluster: 12-Raum (0–11)
 
-## Inhalt
-/items  
-- station-01.bench.item  
-- station-02.bench.item  
-- 2ux-bench-plan.item  
-- 2ux-operator.item  
-
-## Zweck
-2UX dient als Behälter für Bench-Dateien.  
-Keine Logik, keine Engine, keine Interpretation.  
-Nur RAW-Material für Tests und Verhalten.
-
-## Nutzung
-Die Dateien können direkt in Bench-Viewer wie DINOly geladen werden.  
-Jede Station arbeitet unabhängig.
-
-## Status
-2UX ist ein reiner Material-Respo.
-
+Hinweis:
+Diese Werte dienen nur der Orientierung für Operatoren.
+2UX führt keine Logik aus und interpretiert diese Werte nicht.
