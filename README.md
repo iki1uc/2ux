@@ -1,10 +1,11 @@
 ## Position (System-Hinweis)
 
-- home_pos: 0–80 (81-Raum)
-- target_pos: 0–80
-- movement_id: diff(home → target) im 81-Raum
-- band: 4-Raum (0–3)
-- cluster: 12-Raum (0–11)
+- pos12: 0–11        (Position im 12‑Raum)
+- pos4: 0–3          (Position im 4‑Raum)
+- next12: (pos12+1)%12   → wer ist der nächste im 12‑Kreis
+- prev12: (pos12+11)%12  → wer ist der vorherige im 12‑Kreis
+- next4: (pos4+1)%4      → wer ist der nächste im 4‑Band
+- prev4: (pos4+3)%4      → wer ist der vorherige im 4‑Band
 
 Hinweis:
 Diese Werte dienen nur der Orientierung für Operatoren.
