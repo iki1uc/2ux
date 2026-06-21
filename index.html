@@ -1,32 +1,48 @@
 <div class="block">
-  <h3>Navigation (81‑Raum)</h3>
-  <input id="home" placeholder="home (0–80)">
-  <input id="target" placeholder="target (0–80)" style="margin-top:5px;">
-  <textarea id="navOut" rows="4" readonly></textarea>
+  <h3>EVO‑LIVE (12‑CUBE)</h3>
+  <input id="cubeId" placeholder="Cube‑ID eingeben…">
+  <textarea id="cubeOut" rows="8" readonly></textarea>
 </div>
 
 <script>
-function nav81(home, target) {
-  const h = parseInt(home, 10);
-  const t = parseInt(target, 10);
-  if (isNaN(h) || isNaN(t)) return "invalid";
+const EVO_CUBES = Array.from({ length: 12 }, (_, i) => ({
+  id: "EVO" + (i+1),
+  info: {},
+  evo: 0,
+  eich: 0,
+  gen: 0,
+  fix3: [0,0,0],
+  µ: 1,
+  q: 0,
+  y: 0,
+  home: {
+    active: null,
+    pool6: [],
+    pool12: [],
+    pool24: [],
+    pool48: []
+  }
+}));
 
-  const diff = (t - h + 81) % 81; // 81-Raum
-  const row = Math.floor(h / 9);  // 0–8
-  const col = h % 9;              // 0–8
-
-  return `home=${h}, target=${t}
-diff81=${diff}
-row=${row}
-col=${col}`;
+function techLive(cube, info) {
+  cube.info = info;
+  cube.evo++;
+  cube.fix3 = cube.fix3.map(v => v + 1);
+  cube.q += 0.1;
+  cube.y += 0.1;
+  cube.µ *= 1.01;
 }
 
-function updateNav() {
-  const h = document.getElementById("home").value;
-  const t = document.getElementById("target").value;
-  document.getElementById("navOut").value = nav81(h, t);
+function updateCube() {
+  const id = document.getElementById("cubeId").value;
+  const cube = EVO_CUBES.find(c => c.id === id);
+  if (!cube) return;
+
+  techLive(cube, { time: Date.now() });
+
+  document.getElementById("cubeOut").value =
+    JSON.stringify(cube, null, 2);
 }
 
-document.getElementById("home").addEventListener("input", updateNav);
-document.getElementById("target").addEventListener("input", updateNav);
+document.getElementById("cubeId").addEventListener("input", updateCube);
 </script>
